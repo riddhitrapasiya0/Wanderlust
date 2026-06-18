@@ -14,16 +14,18 @@ export default function ListingShow() {
   const [isReviewLoading, setIsReviewLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
+  const loadListing = async () => {
+    try {
+      const res = await api.get(`/api/listings/${id}`);
+      setList(res.data.listing);
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to load listing");
+      navigate("/listings");
+    }
+  };
+
   useEffect(() => {
-    ;(async () => {
-      try {
-        const res = await api.get(`/api/listings/${id}`);
-        setList(res.data.listing);
-      } catch (err) {
-        toast.error(err.response?.data?.message || "Failed to load listing");
-        navigate("/listings");
-      }
-    })();
+    loadListing();
   }, [id]);
 
   const handleDeleteListing = async () => {
