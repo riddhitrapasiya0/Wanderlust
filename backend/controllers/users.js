@@ -9,14 +9,12 @@ const signup = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      req.flash("success", "Welcome to Wanderlust!");
       res.json({
         user: registeredUser,
         message: "Welcome to Wanderlust!",
       });
     });
   } catch (e) {
-    req.flash("error", e.message);
     res.status(400).json({ message: e.message });
   }
 };
@@ -46,7 +44,6 @@ const logout = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    req.flash("success", "you are logged out!");
     res.json({ message: "you are logged out!" });
   });
 };

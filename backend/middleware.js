@@ -6,7 +6,6 @@ import Review from "./models/review.js";
 export const isLoggedin = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.redirectUrl = req.originalUrl;
-    req.flash("error", "you must be logged in to any change on listing!");
     return res.status(401).json({
       message: "you must be logged in to any change on listing!",
     });
@@ -25,7 +24,6 @@ export const isOwner = async (req, res, next) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
   if (!listing.owner._id.equals(req.user._id)) {
-    req.flash("error", "You are not the owner of this listing");
     return res.status(403).json({
       message: "You are not the owner of this listing",
     });
@@ -37,7 +35,6 @@ export const isReviewAuthor = async (req, res, next) => {
   let { id, reviewId } = req.params;
   let review = await Review.findById(reviewId);
   if (!review.author._id.equals(req.user._id)) {
-    req.flash("error", "You are not the author of this review");
     return res.status(403).json({
       message: "You are not the author of this review",
     });
