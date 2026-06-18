@@ -14,24 +14,22 @@ export default function ListingShow() {
   const [isReviewLoading, setIsReviewLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
-  const loadListing = async () => {
-    try {
-      const res = await api.get(`/listings/${id}`);
-      setList(res.data.listing);
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to load listing");
-      navigate("/listings");
-    }
-  };
-
   useEffect(() => {
-    loadListing();
+    ;(async () => {
+      try {
+        const res = await api.get(`/api/listings/${id}`);
+        setList(res.data.listing);
+      } catch (err) {
+        toast.error(err.response?.data?.message || "Failed to load listing");
+        navigate("/listings");
+      }
+    })();
   }, [id]);
 
   const handleDeleteListing = async () => {
     setIsDeleteLoading(true);
     try {
-      const res = await api.delete(`/listings/${id}`);
+      const res = await api.delete(`/api/listings/${id}`);
       toast.success(res.data.message);
       navigate("/listings");
     } catch (err) {
@@ -45,7 +43,7 @@ export default function ListingShow() {
     e.preventDefault();
     setIsReviewLoading(true);
     try {
-      const res = await api.post(`/listings/${id}/reviews`, { review: { rating: Number(rating), comment } });
+      const res = await api.post(`/api/listings/${id}/reviews`, { review: { rating: Number(rating), comment } });
       toast.success(res.data.message);
       loadListing();
       setRating(1);
@@ -59,7 +57,7 @@ export default function ListingShow() {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      const res = await api.delete(`/listings/${id}/reviews/${reviewId}`);
+      const res = await api.delete(`/api/listings/${id}/reviews/${reviewId}`);
       toast.success(res.data.message);
       loadListing();
     } catch (err) {

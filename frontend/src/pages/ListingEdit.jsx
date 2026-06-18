@@ -17,9 +17,9 @@ export default function ListingEdit() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadListing = async () => {
+    ;(async () => {
       try {
-        const res = await api.get(`/listings/${id}`);
+        const res = await api.get(`/api/listings/${id}`);
         setList(res.data.listing);
         setTitle(res.data.listing.title);
         setDescription(res.data.listing.description);
@@ -31,8 +31,7 @@ export default function ListingEdit() {
         toast.error(err.response?.data?.message || "Failed to load listing");
         navigate("/listings");
       }
-    };
-    loadListing();
+    })();
   }, [id, navigate]);
 
   const handleSubmit = async (e) => {
@@ -50,7 +49,7 @@ export default function ListingEdit() {
     formData.append("listing[category]", category);
 
     try {
-      const res = await api.put(`/listings/${id}`, formData, {
+      const res = await api.put(`/api/listings/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success(res.data.message);

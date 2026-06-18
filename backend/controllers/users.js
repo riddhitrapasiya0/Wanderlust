@@ -22,14 +22,23 @@ const signup = async (req, res, next) => {
 };
 
 const login = async (req, res) => {
-  req.flash("success", "Welcome to Wanderlust! You are logged in!");
-  let redirectUrl = res.locals.redirectUrl || "/listings";
-  delete req.session.redirectUrl;
-  res.json({
-    user: req.user,
-    message: "Welcome to Wanderlust! You are logged in!",
-    redirectUrl,
-  });
+  try {
+    const redirectUrl = req.session.redirectUrl || "/listings";
+
+    delete req.session.redirectUrl;
+
+    return res.status(200).json({
+      success: true,
+      message: "Welcome to Wanderlust! You are logged in!",
+      user: req.user,
+      redirectUrl,
+    });
+  } catch (e) {
+    return res.status(400).json({
+      success: false,
+      message: e.message,
+    });
+  }
 };
 
 const logout = (req, res, next) => {
@@ -42,8 +51,28 @@ const logout = (req, res, next) => {
   });
 };
 
+const userAvailableChack = (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({
+        user: null,
+      });
+    }
+
+    res.json({
+      user: req.user,
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      message: e.message,
+    });
+  }
+};
+
 export default {
   signup,
   login,
   logout,
+  userAvailableChack,
 };

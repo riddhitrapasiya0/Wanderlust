@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await api.post("/signup", { username, email, password });
+      const res = await api.post("/api/signup", { username, email, password });
       setUser(res.data.user);
       toast.success(res.data.message);
       navigate("/listings");

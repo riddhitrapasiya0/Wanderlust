@@ -29,7 +29,7 @@ export default function ListingCreate() {
     formData.append("listing[category]", category);
 
     try {
-      const res = await api.post("/listings", formData, {
+      const res = await api.post("/api/listings", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success(res.data.message);

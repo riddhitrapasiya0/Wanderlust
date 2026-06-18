@@ -9,9 +9,9 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
-        const res = await api.get("/user");
+        const res = await api.get("/api/user");
         setUser(res.data.user);
       } catch (err) {
         if (err.response?.status !== 401) {

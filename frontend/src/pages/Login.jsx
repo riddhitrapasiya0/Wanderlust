@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await api.post("/login", { username, password });
+      const res = await api.post("/api/login", { username, password });
       setUser(res.data.user);
       toast.success(res.data.message);
       navigate(location.state?.from?.pathname || res.data.redirectUrl || "/listings");

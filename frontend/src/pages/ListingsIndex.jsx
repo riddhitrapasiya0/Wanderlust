@@ -11,12 +11,12 @@ function ListingsIndex() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         const params = new URLSearchParams();
         if (search) params.set("search", search);
         if (category) params.set("category", category);
-        const res = await api.get(`/listings?${params}`);
+        const res = await api.get(`/api/listings?${params}`);
         setListings(res.data || []);
       } catch (err) {
         toast.error(err.response?.data?.message || "Failed to load listings");
