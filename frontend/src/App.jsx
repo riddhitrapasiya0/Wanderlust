@@ -28,8 +28,7 @@ export default function App() {
                 <ProtectedRoute>
                   <ListingCreate />
                 </ProtectedRoute>
-              }
-            />
+              }/>
             <Route
               path="/listings/:id/edit"
               element={
