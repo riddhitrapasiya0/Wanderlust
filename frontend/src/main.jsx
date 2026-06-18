@@ -5,7 +5,6 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import App from "./App.jsx";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 
 axios.defaults.withCredentials = true;
 
