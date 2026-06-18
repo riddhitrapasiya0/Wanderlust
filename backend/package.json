@@ -1,0 +1,31 @@
+{
+  "name": "wanderlust-backend",
+  "version": "1.0.0",
+  "description": "Wanderlust API backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "Riddhi Trapasiya",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cloudinary": "^1.41.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "joi": "^18.2.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.7.0",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^9.1.0"
+  }
+}
