@@ -9,7 +9,7 @@ function Navbar() {
 
   const logout = async () => {
     try {
-      const res = await api.post("/logout", {
+      const res = await api.post("/api/logout", {
         withCredentials: true,
       });
 
