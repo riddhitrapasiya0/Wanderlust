@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
 import ListingsIndex from "./pages/ListingsIndex";
 import ListingShow from "./pages/ListingShow";
 import ListingCreate from "./pages/ListingCreate";
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Navbar />
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Navigate to="/listings" replace />} />
