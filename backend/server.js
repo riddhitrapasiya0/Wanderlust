@@ -103,7 +103,7 @@ app.use("/api/listings", listingRouter);
 app.use("/api/listings/:id/reviews", reviewsRouter);
 app.use("/api", userRouter);
 
-app.all("/{*path}", (req, res, next) => {
+app.use((req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));
 });
 
