@@ -115,8 +115,3 @@ npm run dev
 cd frontend
 npm run build
 ```
-
-## 📜 License & Contribution
-
-Wanderlust is built for learning and development. We welcome contributions!
-1. Fork → 2. Branch → 3. PR
